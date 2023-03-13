@@ -103,12 +103,9 @@ namespace WayfJwtConnector
         {
             var container = new WayfClaims()
             {
-                EduPersonPrincipalName = principal.FindFirstOrEmpty(r => r.Type == "eduPersonPrincipalName"),
-                GivenName = principal.FindFirstOrEmpty(r => r.Type == "gn"),
-                Mail = principal.FindFirstOrEmpty(r => r.Type == "mail"),
-                SchacHomeOrganization = principal.FindFirstOrEmpty(r => r.Type == "schacHomeOrganization"),
-                SchacPersonalUniqueID = principal.FindFirstOrEmpty(r => r.Type == "schacPersonalUniqueID"),
-                Surname = principal.FindFirstOrEmpty(r => r.Type == "sn")
+                FullName = principal.FindFirstOrEmpty(r => r.Type == "cn"),
+                EduPersonPrimaryAffiliation = principal.FindFirstOrEmpty(r => r.Type == "eduPersonPrimaryAffiliation"),
+                UserId = principal.FindFirstOrEmpty(r => r.Type == "uid"),
             };
             return container;
         }
