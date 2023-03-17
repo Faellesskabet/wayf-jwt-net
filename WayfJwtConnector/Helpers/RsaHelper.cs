@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Org.BouncyCastle.Crypto.Parameters;
@@ -14,16 +15,8 @@ namespace WayfJwtConnector.Helpers
         public static RsaSecurityKey IssuerSigningKey(string publicKey)
         {
             var keyBytes = Convert.FromBase64String(publicKey);
-            var x509Certificate = new X509CertificateParser().ReadCertificate(keyBytes);
-            var asymmetricKeyParameter = x509Certificate.GetPublicKey();
-            var rsaKeyParameters = (RsaKeyParameters)asymmetricKeyParameter;
-            var rsaParameters = new RSAParameters
-            {
-                Modulus = rsaKeyParameters.Modulus.ToByteArrayUnsigned(),
-                Exponent = rsaKeyParameters.Exponent.ToByteArrayUnsigned()
-            };
-            
-            return new RsaSecurityKey(rsaParameters);
+            var x509Certificate = new X509Certificate2(keyBytes);
+            return new RsaSecurityKey(x509Certificate.GetRSAPublicKey());
         }
 
     }
