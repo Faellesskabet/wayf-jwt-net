@@ -7,11 +7,8 @@ namespace WayfJwtConnector.Models
 {
     public class WayfClaims
     {
-        public string EduPersonPrincipalName { get; set; }
-        public string GivenName { get; set; }
-        public string Mail { get; set; }
-        public string SchacHomeOrganization { get; set; }
-        public string SchacPersonalUniqueID { get; set; }
-        public string Surname { get; set; }
+        public string UserId { get; set; }
+        public string EduPersonPrimaryAffiliation { get; set; }
+        public string FullName { get; set; }
     }
 }
